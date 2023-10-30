@@ -1,0 +1,28 @@
+<h1 class="mt-3 mb-3">Produtos</h1>
+
+<form [formGroup]="produtosForm" (submit)="enviar()">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome">
+        </div>
+      </div>
+      <div class="col">
+        <div class="mb-3">
+          <label for="codigodeBarras" class="form-label">Codigo de Barras</label>
+          <input type="number" class="form-control" id="codigodeBarras" formControlName="codigodeBarras">
+        </div>
+      </div>
+        <div class="col">
+        <div class="mb-3">
+        <label for="preco" class="form-label">Preço</label>
+        <input type="text" class="form-control" id="preco" formControlName="preco">
+      </div>
+    </div>
+    <a class="btn btn-secondary me-1" routerLink="/produtos">Voltar</a>
+    <button class="btn btn-primary" type="submit" [disabled]="produtosForm.invalid">Cadastrar</button>
+  </div>
+</div>
+</form>
