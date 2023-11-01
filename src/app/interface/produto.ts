@@ -1,7 +1,7 @@
 export interface IProdutos {
     id: number;
     nome: string;
-    codigoDeBarras: number;
+    codigoBarras: string;
     preco: number;
     ativo: boolean;
 }

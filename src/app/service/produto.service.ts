@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProdutosService {
-  api = 'http://localhost:3000/usuarios';
+  api = 'http://localhost:8080/api/produtos';
 
   constructor(private http: HttpClient) {}
 
@@ -16,5 +16,17 @@ export class ProdutosService {
 
   cadastrarProduto(produto: IProdutos) {
     return this.http.post<IProdutos>(this.api, produto);
+  }
+
+  editarProduto(produto: IProdutos) {
+    return this.http.put(this.api, produto);
+  }
+
+  buscarProdutoId(idProduto: number){
+    return this.http.get<IProdutos>(`${this.api}/${idProduto}`)
+  }
+
+  deletarProduto(idProduto: number ){
+    return this.http.delete<IProdutos>(`${this.api}/${idProduto}`)
   }
 }

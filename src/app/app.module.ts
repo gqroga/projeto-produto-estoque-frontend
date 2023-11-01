@@ -4,20 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
-import { EstoqueComponent } from './pages/estoque/estoque.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
+import { CadastrarProdutosComponent } from './pages/cadastrar-produtos/cadastrar-produtos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProdutosComponent,
-    EstoqueComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    CadastrarProdutosComponent
   ],
   imports: [
     BrowserModule,

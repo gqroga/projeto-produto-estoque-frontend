@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { IProdutos } from 'src/app/interface/produto';
 import { ProdutosService } from 'src/app/service/produto.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ProdutosComponent {
 
   produtos: IProdutos [] = [];
 
-  constructor(private produtosService: ProdutosService){}
+  constructor(private produtosService: ProdutosService, private cd: ChangeDetectorRef){}
 
   ngOnInit() {
     this.produtosService.buscarTodos().subscribe(
@@ -25,8 +26,27 @@ export class ProdutosComponent {
     );
   }
 
-  remover(id: number) {
-    this.produtos = this.produtos.filter((produtos) => produtos.id !== id);
+  deletarProduto(idProduto: number, nome: string){
+    Swal.fire({
+      title: `Deseja remover o produto ${nome}?`,
+      showCancelButton: true,
+      confirmButtonText: 'Remover',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.produtosService.deletarProduto(idProduto).subscribe(result =>{
+          Swal.fire('Removido com sucesso!')
+          this.produtosService.buscarTodos();
+        }, error =>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao remover o produto! '
+          })
+          console.error(error);
+        })
+      }
+    })
   }
+
 } 
 

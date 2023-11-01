@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
-import { HammerModule } from '@angular/platform-browser';
-import { EstoqueComponent } from './pages/estoque/estoque.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CadastrarProdutosComponent } from './pages/cadastrar-produtos/cadastrar-produtos.component';
 
 const routes: Routes = [
   {
-    path:'', component: HammerModule
+    path:'', component: HomeComponent
   },
 
   {
     path:'produtos', component: ProdutosComponent
   },
   {
-    path:'produtos/cadastrar', component: EstoqueComponent
+    path:'produtos/cadastrar', component: CadastrarProdutosComponent
   },
   {
-    path:'produtos/cadastrar/:id', component: EstoqueComponent
+    path:'produtos/editar/:id', component: CadastrarProdutosComponent
   }
 ];
 

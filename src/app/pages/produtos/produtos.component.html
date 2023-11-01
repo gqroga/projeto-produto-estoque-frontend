@@ -10,17 +10,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let produtos of produtos">
-      <th scope="row">{{ produtos.id }}</th>
-      <td>{{ produtos.codigoDeBarras }}</td>
-      <td class="text-center">
-        <i *ngIf="produtos.ativo else elseBlock" class="bi bi-hand-thumbs-up-fill text-success"></i>
-        <ng-template #elseBlock>
-          <i *ngIf="!produtos.ativo" class="bi bi-hand-thumbs-down-fill text-danger"></i>
-        </ng-template>
-      </td>
-      <td class="text-center">
-        <button type="button" class="btn btn-primary btn-sm" (click)="remover(produtos.id)">Deletar</button>
+    <tr *ngFor="let produto of produtos">
+      <th scope="row">{{ produto.nome }}</th>
+      <td>{{ produto.codigoBarras }}</td>
+      <td>{{ produto.preco }}</td>
+      <td class="produto.acoes">
+        <a routerLink="/produtos/editar/{{produto.id}}" class="btn btn-primary btn-sm">Editar</a>
+        <button type="button" class="btn btn-primary btn-sm" (click)="deletarProduto(produto.id, produto.nome)">Deletar</button>
       </td>
     </tr>
   </tbody>
