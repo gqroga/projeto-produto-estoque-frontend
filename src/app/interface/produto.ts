@@ -4,4 +4,5 @@ export interface IProdutos {
     codigoBarras: string;
     preco: number;
     ativo: boolean;
+    
 }

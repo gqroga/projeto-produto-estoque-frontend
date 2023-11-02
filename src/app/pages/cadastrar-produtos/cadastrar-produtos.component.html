@@ -1,4 +1,5 @@
-<h1 class="mt-3 mb-3">Cadastrar Produto</h1>
+<h1 class="mt-3 mb-3" *ngIf="novoProduto" >Cadastrar Produto</h1>
+<h1 class="mt-3 mb-3" *ngIf="!novoProduto" >Editar Produto</h1>
 
 <form [formGroup]="produtosForm" (submit)="enviar()">
   <div class="container">
@@ -6,23 +7,26 @@
       <div class="col">
         <div class="mb-3">
           <label for="nome" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nome" formControlName="nome">
+          <input required maxlength="64"  type="text" class="form-control" id="nome" formControlName="nome">
         </div>
       </div>
       <div class="col">
         <div class="mb-3">
           <label for="codigoBarras" class="form-label">Codigo de Barras</label>
-          <input type="text" class="form-control" id="codigoBarras" formControlName="codigoBarras">
+          <input required maxlength="12" type="text" class="form-control" id="codigoBarras" formControlName="codigoBarras">
         </div>
       </div>
         <div class="col">
         <div class="mb-3">
         <label for="preco" class="form-label">Preço</label>
-        <input type="text" class="form-control" id="preco" formControlName="preco">
+        <input type="number" class="form-control" id="preco" formControlName="preco">
       </div>
     </div>
+    <div class="text-center">
     <a class="btn btn-secondary me-1" routerLink="/produtos">Voltar</a>
-    <button class="btn btn-primary" type="submit" [disabled]="produtosForm.invalid">Cadastrar</button>
+    <button class="btn btn-primary" *ngIf="novoProduto" type="submit" [disabled]="produtosForm.invalid">Cadastrar</button>
+    <button class="btn btn-primary" *ngIf="!novoProduto" type="submit" [disabled]="produtosForm.invalid">Editar</button>
+    </div>
   </div>
 </div>
 </form>

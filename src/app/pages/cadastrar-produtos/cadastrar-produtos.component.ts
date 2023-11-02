@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProdutos } from 'src/app/interface/produto';
 import Swal from 'sweetalert2';
@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CadastrarProdutosComponent {
 
     novoProduto: Boolean = false;
+
 
   constructor(private produtosService: ProdutosService, private route: ActivatedRoute, private router: Router) {}
 
@@ -31,8 +32,8 @@ export class CadastrarProdutosComponent {
     this.produtosService.cadastrarProduto(produtos).subscribe(
       (result) => {
         Swal.fire(
-          'Porduto cadastrado com sucesso!',
-        );
+          `Produto ${this.novoProduto ? 'cadastrado':'atualizado'} com sucesso!`,
+        ).then((result) => this.router.navigate(['/produtos']));
       },
       (error) => {
         const { message } = error;
@@ -69,4 +70,5 @@ export class CadastrarProdutosComponent {
     }
 
   }
+
 }

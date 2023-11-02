@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { IProdutos } from 'src/app/interface/produto';
 import { ProdutosService } from 'src/app/service/produto.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ProdutosComponent {
 
   produtos: IProdutos [] = [];
 
-  constructor(private produtosService: ProdutosService, private cd: ChangeDetectorRef){}
+  constructor(private produtosService: ProdutosService, private cd: ChangeDetectorRef, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit() {
     this.produtosService.buscarTodos().subscribe(
@@ -32,11 +33,18 @@ export class ProdutosComponent {
       showCancelButton: true,
       confirmButtonText: 'Remover',
       cancelButtonText: 'Cancelar'
-    }).then((result) => {
+    }).then((result)=> {
       if(result.isConfirmed){
         this.produtosService.deletarProduto(idProduto).subscribe(result =>{
           Swal.fire('Removido com sucesso!')
-          this.produtosService.buscarTodos();
+          this.produtosService.buscarTodos().subscribe(
+            (produtos) => {
+              this.produtos = produtos;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         }, error =>{
           Swal.fire({
             icon: 'error',
@@ -46,6 +54,15 @@ export class ProdutosComponent {
         })
       }
     })
+  }
+
+   formatCurrency(value: number) {
+    const numericValue = value.toString().replace(',', '.');
+    const formattedValue = parseFloat(numericValue).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+    return formattedValue;
   }
 
 } 

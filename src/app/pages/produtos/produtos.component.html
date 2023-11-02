@@ -3,23 +3,23 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th scope="col">Nome</th>
-      <th scope="col">Código de Barras</th>
-      <th scope="col">Preço</th>
-      <th scope="col">Ações</th>
+      <th class="text-center" scope="col">Nome</th>
+      <th class="text-center" scope="col">Código de Barras</th>
+      <th class="text-center" scope="col">Preço</th>
+      <th class="text-center" scope="col">Ações</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let produto of produtos">
-      <th scope="row">{{ produto.nome }}</th>
-      <td>{{ produto.codigoBarras }}</td>
-      <td>{{ produto.preco }}</td>
-      <td class="produto.acoes">
-        <a routerLink="/produtos/editar/{{produto.id}}" class="btn btn-primary btn-sm">Editar</a>
-        <button type="button" class="btn btn-primary btn-sm" (click)="deletarProduto(produto.id, produto.nome)">Deletar</button>
+      <td class="text-center">{{ produto.nome }}</td>
+      <td class="text-center">{{ produto.codigoBarras }}</td>
+      <td class="text-center">{{ formatCurrency(produto.preco) }}</td>
+      <td class="text-center">
+        <a routerLink="/produtos/editar/{{produto.id}}" class="btn btn-primary btn-sm me-2" >Editar</a>
+        <button type="button" class="btn btn-danger btn-sm" (click)="deletarProduto(produto.id, produto.nome)">Excluir</button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<a class="btn btn-primary" routerLink="/produtos/cadastrar">Cadastrar</a>
+<a class="btn btn-success" routerLink="/produtos/cadastrar">Cadastrar</a>

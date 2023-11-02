@@ -1,12 +1,14 @@
 import { IProdutos } from "../interface/produto";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { arrow } from "@popperjs/core";
+import { catchError, tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProdutosService {
-  api = 'http://localhost:8080/api/produtos';
+  private api ='http://localhost:8080/api/produtos';
 
   constructor(private http: HttpClient) {}
 
