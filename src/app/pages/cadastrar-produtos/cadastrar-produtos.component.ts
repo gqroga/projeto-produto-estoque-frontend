@@ -22,7 +22,7 @@ export class CadastrarProdutosComponent {
     id: new FormControl(),
     nome: new FormControl('', Validators.required),
     codigoBarras: new FormControl('', Validators.required),
-    preco: new FormControl(0),
+    preco: new FormControl(0, Validators.required),
   });
 
   enviar() {
@@ -69,6 +69,18 @@ export class CadastrarProdutosComponent {
       })
     }
 
+  }
+
+  get nome() {
+    return this.produtosForm.get("nome")
+  }
+
+  get codigoBarras() {
+    return this.produtosForm.get("codigoBarras")
+  }
+
+  get preco() {
+    return this.produtosForm.get("preco")
   }
 
 }

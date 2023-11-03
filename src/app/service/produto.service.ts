@@ -1,8 +1,6 @@
 import { IProdutos } from "../interface/produto";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { arrow } from "@popperjs/core";
-import { catchError, tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root',

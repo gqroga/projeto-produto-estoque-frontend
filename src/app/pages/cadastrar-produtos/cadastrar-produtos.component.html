@@ -8,18 +8,36 @@
         <div class="mb-3">
           <label for="nome" class="form-label">Nome</label>
           <input required maxlength="64"  type="text" class="form-control" id="nome" formControlName="nome">
+          <div *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)">
+            <div *ngIf="nome?.errors?.['required']" class= "form-validation-error">
+              Campo obrigatório
+            </div>
+          </div>
         </div>
       </div>
       <div class="col">
         <div class="mb-3">
           <label for="codigoBarras" class="form-label">Codigo de Barras</label>
-          <input required maxlength="12" type="text" class="form-control" id="codigoBarras" formControlName="codigoBarras">
+          <input required maxlength="12" minlength="12" type="text" class="form-control" id="codigoBarras" formControlName="codigoBarras">
+          <div *ngIf="codigoBarras?.invalid && (codigoBarras?.dirty || codigoBarras?.touched)">
+            <div *ngIf="codigoBarras?.errors?.['required']" class= "form-validation-error">
+              Campo obrigatório
+            </div>
+              <div *ngIf="codigoBarras?.errors?.['minlength']" class= "form-validation-error">
+                Código de Barras deve possuir pelo menos 12 dígitos
+              </div>
+          </div>
         </div>
       </div>
         <div class="col">
         <div class="mb-3">
         <label for="preco" class="form-label">Preço</label>
         <input type="number" class="form-control" id="preco" formControlName="preco">
+        <div *ngIf="preco?.invalid && (preco?.dirty || preco?.touched)">
+          <div *ngIf="preco?.errors?.['required']" class= "form-validation-error">
+            Campo obrigatório
+          </div>
+        </div>
       </div>
     </div>
     <div class="text-center">
